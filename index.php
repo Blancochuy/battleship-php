@@ -35,13 +35,86 @@ function acomodarNaves($tablero, $nave)
 }
 
 $tablero1 = acomodarNaves($tablero1,$battleship_j1);
-
+//funciones para elegir horizontal o vertical en el acomodo de las naves
+function horizontal($tamano,$tablero)
+{
+  if ($tamano == 2)
+  {
+    $random_x = rand(0,8);
+    $random_y = rand(0,9);
+  }
+  elseif ($tamano == 3)
+  {
+    $random_x = rand(0,7);
+    $random_y = rand(0,9);
+  }
+  elseif ($tamano == 4)
+  {
+    $random_x = rand(0,6);
+    $random_y = rand(0,9);
+  }
+  else
+  {
+    $random_x = rand(0,5);
+    $random_y = rand(0,9);
+  }
+}
+function vertical($tamano, $tablero)
+{
+  if ($tamano == 2)
+  {
+    $random_x = rand(0,9);
+    $random_y = rand(0,8);
+  }
+  elseif ($tamano == 3)
+  {
+    $random_x = rand(0,9);
+    $random_y = rand(0,7);
+  }
+  elseif ($tamano == 4)
+  {
+    $random_x = rand(0,9);
+    $random_y = rand(0,6);
+  }
+  else
+  {
+    $random_x = rand(0,9);
+    $random_y = rand(0,5);
+  }
+}
 /*Funcion para crear las cordenadas de las naves*/
 function setNaves()
 {
     for ($i = 0; $i < 5; $i++)
     {
-
+      $random = rand(0,1); // 0 = vertical , 1 = horizontal
+      //if para submarinos
+      if ($i == 0 or $i == 1)
+      {
+        if ($random == 0)
+        {
+          vertical(2,$tablero)
+        }
+        else
+        {
+          // code...
+        }
+      }
+      //if para frigate
+      elseif($i == 2)
+      {
+        // code...
+      }
+      //if para crusier
+      elseif($i == 3)
+      {
+        // code...
+      }
+      //if para battleship
+      else
+      {
+        // code...
+      }
     }
 }
 ?>
