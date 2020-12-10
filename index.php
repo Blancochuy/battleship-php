@@ -83,7 +83,7 @@ function vertical($tamano, $tablero)
   }
 }
 /*Funcion para crear las cordenadas de las naves*/
-function setNaves()
+function setNaves($tablero)
 {
     for ($i = 0; $i < 5; $i++)
     {
@@ -93,28 +93,75 @@ function setNaves()
       {
         if ($random == 0)
         {
-          vertical(2,$tablero)
+          $tablero=vertical(2,$tablero);
         }
         else
         {
-          // code...
+          $tablero=horizontal(2,$tablero);
         }
       }
       //if para frigate
       elseif($i == 2)
       {
-        // code...
+        if ($random == 0)
+        {
+          $tablero=vertical(3,$tablero);
+        }
+        else
+        {
+          $tablero=horizontal(3,$tablero);
+        }
       }
       //if para crusier
       elseif($i == 3)
       {
-        // code...
+        if ($random == 0)
+        {
+          $tablero=vertical(4,$tablero);
+        }
+        else
+        {
+          $tablero=horizontal(4,$tablero);
+        }
       }
       //if para battleship
       else
       {
-        // code...
+        if ($random == 0)
+        {
+          $tablero=vertical(5,$tablero);
+        }
+        else
+        {
+          $tablero=horizontal(5,$tablero);
+        }
       }
     }
+
+    return $tablero;
+}
+/*funcion para revisar si existe una nave en esa casilla*/
+function hayNave()
+{
+  $check = 0;
+  for ($i = 0; $i < 10; $i++)
+  {
+      for ($j = 0; $j < 10; $j++)
+      {
+           if ($tablero1[$i][$j] == 1)
+           {
+               $check = 1;
+           }
+      }
+  }
+
+  if ($check = 1)
+  {
+      return true;
+  }
+  else
+  {
+      return false;
+  }
 }
 ?>
