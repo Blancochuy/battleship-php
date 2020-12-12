@@ -5,7 +5,6 @@ $tablero2 = array_fill(0, 10, array_fill(0, 10, 0));
 $tablero1 = setNaves($tablero1);
 $tablero2 = setNaves($tablero2);
 
-printTablero($tablero1);
 /*Funcion para imprimir tableros en modo consola*/
 function printTablero($tablero)
 {
@@ -21,27 +20,73 @@ function printTablero($tablero)
 	}
 
 }
-
-while (hayNave($tablero1))
+//primer turno de jugador random
+$jugador=rand(1,2);
+/*while hasta que alguien gane el juego*/
+while (hayNave($tablero1) or hayNave($tablero2))
 {
-	echo "\n";
-	$x = readline("Cordenada X: ");
-	$y = readline("Cordenada Y: ");
-	$x = $x-1;
-	$y = $y-1;
-	if (hit($tablero1, $x, $y))
-	{
-		$tablero1[$x][$y] = 2;
-		printTablero($tablero1);
-	}
-	else
-	{
-		if($tablero1[$x][$y] == 0)
-		{
-			$tablero1[$x][$y] = 3;
-		}
-		printTablero($tablero1);
-	}
+  if($jugador==2)
+  {
+	echo "Jugador 2 tirando";
+	printTablero($tablero1);
+  	echo "\n";
+  	$x = readline("Cordenada X: ");
+  	$y = readline("Cordenada Y: ");
+  	$x = $x-1;
+  	$y = $y-1;
+    if($x>9 or $x<0 or $y>9 or $y<0)
+    {
+      echo "El jugador 2 pierde por introducir una cordenada invalida";
+      break;
+    }
+  	if (hit($tablero1, $x, $y))
+  	{
+  		$tablero1[$x][$y] = 2;
+  		printTablero($tablero1);
+      if(!hayNave($tablero1))
+        echo "Gana el jugador 2, ya no hay mas naves";
+  	}
+  	else
+  	{
+  		if($tablero1[$x][$y] == 0)
+  		{
+  			$tablero1[$x][$y] = 3;
+  		}
+  		printTablero($tablero1);
+      $jugador=1;
+  	}
+  }
+  else
+  {
+	echo "Jugador 1 tirando";
+	printTablero($tablero2);
+    echo "\n";
+  	$x = readline("Cordenada X: ");
+  	$y = readline("Cordenada Y: ");
+  	$x = $x-1;
+  	$y = $y-1;
+    if($x>9 or $x<0 or $y>9 or $y<0)
+    {
+      echo "El jugador 1 pierde por introducir una cordenada invalida";
+      break;
+    }
+  	if (hit($tablero2, $x, $y))
+  	{
+  		$tablero2[$x][$y] = 2;
+  		printTablero($tablero2);
+      if(!hayNave($tablero1))
+        echo "Gana el jugador 2, ya no hay mas naves";
+  	}
+  	else
+  	{
+  		if($tablero2[$x][$y] == 0)
+  		{
+  			$tablero2[$x][$y] = 3;
+  		}
+  		printTablero($tablero2);
+      $jugador=2;
+  	}
+  }
 }
 
 //funciones para elegir horizontal o vertical en el acomodo de las naves
