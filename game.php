@@ -1,7 +1,7 @@
 <?php
 $tablero1 = array_fill(0, 10, array_fill(0, 10, 0));
 $tablero2 = array_fill(0, 10, array_fill(0, 10, 0));
-
+$jugador=rand(1,2);
 $tablero1 = setNaves($tablero1);
 $tablero2 = setNaves($tablero2);
 
@@ -62,7 +62,7 @@ function printTableroRival($tablero)
 
 }
 //primer turno de jugador random
-$jugador=rand(1,2);
+
 /*while hasta que alguien gane el juego*/
 // while (hayNave($tablero1) or hayNave($tablero2))
 // {
