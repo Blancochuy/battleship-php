@@ -13,7 +13,48 @@ function printTablero($tablero)
 	{
 		for ($j = 0; $j < 10; $j++)
 		{
-			echo $tablero[$i][$j];
+			if($tablero[$i][$j] == 0)
+			{
+				echo"🌊";
+			}
+			elseif($tablero[$i][$j] == 1)
+			{
+				echo "🚢";
+			}
+			elseif($tablero[$i][$j] == 2)
+			{
+				echo "💥";
+			}
+			else
+			{
+				echo"💦";
+			}
+			echo "";
+		}
+		echo "\n";
+	}
+
+}
+/*Imprimir tablero del rival*/
+function printTableroRival($tablero)
+{
+	echo "\n";
+	for ($i = 0; $i < 10; $i++)
+	{
+		for ($j = 0; $j < 10; $j++)
+		{
+			if($tablero[$i][$j] == 0 or $tablero[$i][$j] == 1)
+			{
+				echo"🌊";
+			}
+			elseif($tablero[$i][$j] == 2)
+			{
+				echo "💥";
+			}
+			else
+			{
+				echo"💦";
+			}
 			echo "";
 		}
 		echo "\n";
@@ -23,71 +64,71 @@ function printTablero($tablero)
 //primer turno de jugador random
 $jugador=rand(1,2);
 /*while hasta que alguien gane el juego*/
-while (hayNave($tablero1) or hayNave($tablero2))
-{
-  if($jugador==2)
-  {
-	echo "Jugador 2 tirando";
-	printTablero($tablero1);
-  	echo "\n";
-  	$x = readline("Cordenada X: ");
-  	$y = readline("Cordenada Y: ");
-  	$x = $x-1;
-  	$y = $y-1;
-    if($x>9 or $x<0 or $y>9 or $y<0)
-    {
-      echo "El jugador 2 pierde por introducir una cordenada invalida";
-      break;
-    }
-  	if (hit($tablero1, $x, $y))
-  	{
-  		$tablero1[$x][$y] = 2;
-  		printTablero($tablero1);
-      if(!hayNave($tablero1))
-        echo "Gana el jugador 2, ya no hay mas naves";
-  	}
-  	else
-  	{
-  		if($tablero1[$x][$y] == 0)
-  		{
-  			$tablero1[$x][$y] = 3;
-  		}
-  		printTablero($tablero1);
-      $jugador=1;
-  	}
-  }
-  else
-  {
-	echo "Jugador 1 tirando";
-	printTablero($tablero2);
-    echo "\n";
-  	$x = readline("Cordenada X: ");
-  	$y = readline("Cordenada Y: ");
-  	$x = $x-1;
-  	$y = $y-1;
-    if($x>9 or $x<0 or $y>9 or $y<0)
-    {
-      echo "El jugador 1 pierde por introducir una cordenada invalida";
-      break;
-    }
-  	if (hit($tablero2, $x, $y))
-  	{
-  		$tablero2[$x][$y] = 2;
-  		printTablero($tablero2);
-      if(!hayNave($tablero1))
-        echo "Gana el jugador 2, ya no hay mas naves";
-  	}
-  	else
-  	{
-  		if($tablero2[$x][$y] == 0)
-  		{
-  			$tablero2[$x][$y] = 3;
-  		}
-  		printTablero($tablero2);
-      $jugador=2;
-  	}
-  }
-}
+// while (hayNave($tablero1) or hayNave($tablero2))
+// {
+//   if($jugador==2)
+//   {
+// 	echo "Jugador 2 tirando";
+// 	printTableroRival($tablero1);
+//   	echo "\n";
+//   	$x = readline("Cordenada X: ");
+//   	$y = readline("Cordenada Y: ");
+//   	$x = $x-1;
+//   	$y = $y-1;
+//     if($x>9 or $x<0 or $y>9 or $y<0)
+//     {
+//       echo "El jugador 2 pierde por introducir una cordenada invalida";
+//       break;
+//     }
+//   	if (hit($tablero1, $x, $y))
+//   	{
+//   		$tablero1[$x][$y] = 2;
+//   		printTableroRival($tablero1);
+//       if(!hayNave($tablero1))
+//         echo "Gana el jugador 2, ya no hay mas naves";
+//   	}
+//   	else
+//   	{
+//   		if($tablero1[$x][$y] == 0)
+//   		{
+//   			$tablero1[$x][$y] = 3;
+//   		}
+//   		printTableroRival($tablero1);
+//       $jugador=1;
+//   	}
+//   }
+//   else
+//   {
+// 	echo "Jugador 1 tirando";
+// 	printTableroRival($tablero2);
+//     echo "\n";
+//   	$x = readline("Cordenada X: ");
+//   	$y = readline("Cordenada Y: ");
+//   	$x = $x-1;
+//   	$y = $y-1;
+//     if($x>9 or $x<0 or $y>9 or $y<0)
+//     {
+//       echo "El jugador 1 pierde por introducir una cordenada invalida";
+//       break;
+//     }
+//   	if (hit($tablero2, $x, $y))
+//   	{
+//   		$tablero2[$x][$y] = 2;
+//   		printTableroRival($tablero2);
+//       if(!hayNave($tablero1))
+//         echo "Gana el jugador 2, ya no hay mas naves";
+//   	}
+//   	else
+//   	{
+//   		if($tablero2[$x][$y] == 0)
+//   		{
+//   			$tablero2[$x][$y] = 3;
+//   		}
+//   		printTableroRival($tablero2);
+//       $jugador=2;
+//   	}
+//   }
+// }
 
 //funciones para elegir horizontal o vertical en el acomodo de las naves
 function horizontal($tamano,$tablero)
